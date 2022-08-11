@@ -1,4 +1,5 @@
-import { Players1 } from "./class/players1.js";
+import { Players1, Players2 } from "./class/players1.js";
+import { IsPlayer } from "./interfaces/IsPlayer.js";
 //we export ts file ffile but import js file
 
 let named = "Nazmus Sakib";
@@ -161,3 +162,43 @@ console.log(sakib1.play());
 //there is proble in here, multiple file is invoke here, and cause performance issues.
 //to solved this we use webpack, but typescript does not help on this
 //another problem is that there is old browser supporting issues
+
+
+//interface
+//when we try to share reference type we can share by allias
+// but we share also by interface. main difference is that when we try to
+//avoid redundancy than we use sllias but we we try avoid redundance and add extra reference type than we cam use
+//interface
+interface DrawRactangle { 
+    width: number;
+    length: number;
+}
+
+function drawRectangle(option: DrawRactangle):number {
+    let width = option.width;
+    let length = option.length;
+
+    return width * length;
+}
+
+let DrawOption = {
+    width: 30,
+    length: 20,
+    height: 40
+}
+
+console.log("Ractangle", drawRectangle(DrawOption));
+
+// there is a player object
+// player2 is coming from class module
+let sakib2: IsPlayer;
+// we are creating object from Players2 object and IsPlayer interface type
+sakib2 = new Players2("Sakib", 36, 'Bangladesh');
+const afif2 = new Players2("Afif", 22, 'Bangladesh');
+// sakib1.name = "6"
+console.log(sakib2.play());
+//We are creating arr from IsPlayer interface type
+const playersArr: IsPlayer[] = [];
+playersArr.push(sakib2, afif2);
+console.log(playersArr);
+

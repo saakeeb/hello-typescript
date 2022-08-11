@@ -1,3 +1,6 @@
+import { Players1 } from "./class/players1.js";
+//we export ts file ffile but import js file
+
 let named = "Nazmus Sakib";
 console.log(named);
 
@@ -97,7 +100,6 @@ userInfo = (id: number | string, userdet: {
 }
 console.log("UserInfo", userInfo(13, {name: 'Sakib', age: 27}));
 
-
 //Object type
 //We can define typeb of object in typescript
 
@@ -105,16 +107,13 @@ class Players {
     name: string;
     age: number;
     country: string;
-
     constructor(a: string, b: number, c: string) { 
         this.name= a,
         this.age= b,
         this.country= c
     }
-
     play() { 
         console.log(`${this.name} is playing for ${this.country}`);
-        
     }
 }
 const sakib75 = new Players("Sakib", 36, 'Bangladesh');
@@ -127,10 +126,38 @@ arr.push(1);
 arr.push(6);
 console.log(arr);
 
-//we can pass object type that we created
+//we can pass object type in array that we created
 const arr1: Players[] = [];
 arr1.push(sakib75);
 arr1.push(afif);
 console.log(arr1);
 
 
+// access modifier
+// we can access only public mode outside of class
+//private mode only accessible within class
+//object is available for read only
+// to short-cut we can put access modifier to constructor parameter so that we it will well organise,
+//this short cut is available for explicit access modifier,
+//if explicit modifier is missing then shortcut will not work
+//
+// class Players1 {
+//     constructor(
+//         public name: string,
+//         private age: number,
+//         readonly country: string,
+//     ) {}
+//     play() {
+//         console.log(`${this.name} is playing for ${this.country} whose age is ${this.age}`);
+//     }
+// }
+//
+const sakib1 = new Players1("Sakib", 36, 'Bangladesh');
+const afif1 = new Players1("Afif", 22, 'Bangladesh');
+// sakib1.name = "6"
+console.log(sakib1.play());
+
+//we can easily import/export type so that we can keep  the structure clean
+//there is proble in here, multiple file is invoke here, and cause performance issues.
+//to solved this we use webpack, but typescript does not help on this
+//another problem is that there is old browser supporting issues

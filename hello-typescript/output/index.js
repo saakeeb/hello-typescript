@@ -139,3 +139,80 @@ console.log(sakib2.play());
 const playersArr = [];
 playersArr.push(sakib2, afif2);
 console.log(playersArr);
+// Generics
+// When we try to pass object as a parameter then we can assign generics value to show all object value to assign
+const addId = (obj) => {
+    const id = Math.floor(Math.random() * (100 - 50) + 50);
+    return Object.assign(Object.assign({}, obj), { id });
+};
+const user = addId({
+    name: "sakib1",
+    age: 36
+});
+// user.id
+console.log("generics", user);
+const addId2 = (obj) => {
+    //it will receive string number, obj any generic type, but we only want obj 
+    const id = Math.floor(Math.random() * (100 - 50) + 50);
+    return Object.assign(Object.assign({}, obj), { id });
+};
+const user2 = addId2({
+    name: "sakib1",
+    age: 36
+});
+const user21 = addId2("Sakib");
+console.log("generics2", user2, user21);
+const addId3 = (obj) => {
+    const id = Math.floor(Math.random() * (100 - 50) + 50);
+    return Object.assign(Object.assign({}, obj), { id });
+};
+const user3 = addId3({
+    name: "sakib1",
+    age: 36,
+    country: "Bangladesh"
+});
+console.log("generics3", user3);
+const addId4 = (obj) => {
+    //
+    const id = Math.floor(Math.random() * (100 - 50) + 50);
+    return Object.assign(Object.assign({}, obj), { id });
+};
+const user4 = addId4({
+    name: "sakib1",
+    age: 36,
+    country: "Bangladesh"
+});
+console.log("generics4", user4);
+const apiReq = {
+    name: 'API',
+    status: 200,
+    data: "data"
+};
+const apiReq1 = {
+    name: 'API',
+    status: 200,
+    data: {
+        data1: 'data1'
+    }
+};
+//Enum
+//Optional data type 
+var rRes;
+(function (rRes) {
+    rRes[rRes["success"] = 0] = "success";
+    rRes[rRes["failure"] = 1] = "failure";
+    rRes[rRes["unauthenticate"] = 2] = "unauthenticate";
+    rRes[rRes["forbidden"] = 3] = "forbidden";
+})(rRes || (rRes = {}));
+const apiReq2 = {
+    name: 'API',
+    status: rRes.forbidden,
+    data: "data"
+};
+console.log("enum", apiReq2);
+//Tuples
+// we use it in fixed array, where we have to maintain array index type.
+//it is special case we can not add or remove from array
+//We can assign number in number type
+const arrTuples = [2, 'Sakib', { name: 'sakib' }];
+console.log("Tuples", arrTuples);

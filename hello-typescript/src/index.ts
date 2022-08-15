@@ -202,3 +202,95 @@ const playersArr: IsPlayer[] = [];
 playersArr.push(sakib2, afif2);
 console.log(playersArr);
 
+// Generics
+// When we try to pass object as a parameter then we can assign generics value to show all object value to assign
+const addId = (obj: object) => {
+    const id = Math.floor(Math.random() * (100 - 50) + 50);
+    return { ...obj, id };
+}
+const user = addId({
+    name: "sakib1",
+    age: 36
+});
+// user.id
+console.log("generics", user);
+const addId2 = <T>(obj: T) => {//<T> by T we telling that addId2 will receive any generics type data,
+    //it will receive string number, obj any generic type, but we only want obj 
+    const id = Math.floor(Math.random() * (100 - 50) + 50);
+    return { ...obj, id };
+}
+const user2 = addId2({
+    name: "sakib1",
+    age: 36
+});
+const user21 = addId2("Sakib");
+console.log("generics2", user2, user21);
+const addId3 = <T extends object>(obj: T) => {//we can extend the T generics type or 
+    const id = Math.floor(Math.random() * (100 - 50) + 50);
+    return { ...obj, id };
+}
+const user3 = addId3({
+    name: "sakib1",
+    age: 36,
+    country: "Bangladesh"
+});
+console.log("generics3", user3);
+const addId4 = <T extends {
+    name: string;
+    age: number;
+}>(obj: T) => {//object here  we will see if name, age available than we are ok, if other type available that does not matter
+    //
+    const id = Math.floor(Math.random() * (100 - 50) + 50);
+    return { ...obj, id };
+}
+const user4 = addId4({
+    name: "sakib1",
+    age: 36,
+    country: "Bangladesh"
+});
+console.log("generics4", user4);
+
+//interface with generics
+interface APIReq <T>{ 
+    name: string;
+    status: number;
+    data: T
+}
+
+const apiReq: APIReq<string> = {//here we pass string as generic data
+    name: 'API',
+    status: 200,
+    data: "data"
+}
+
+const apiReq1: APIReq<object> = {//here we pass object as generic data
+    name: 'API',
+    status: 200,
+    data: {
+        data1: 'data1'
+    }
+}
+
+//Enum
+//Optional data type 
+enum rRes { success, failure, unauthenticate, forbidden}
+
+interface APIReq2<T> {
+    name: string;
+    status: rRes;
+    data: T
+}
+const apiReq2: APIReq<string> = {//here we pass string as generic data
+    name: 'API',
+    status: rRes.forbidden,
+    data: "data"
+}
+console.log("enum", apiReq2);
+
+//Tuples
+// we use it in fixed array, where we have to maintain array index type.
+//it is special case we can not add or remove from array
+//We can assign number in number type
+
+const arrTuples: [number, string, object] = [2, 'Sakib', { name: 'sakib' }]
+console.log("Tuples", arrTuples);
